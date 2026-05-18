@@ -21,133 +21,48 @@
     --shadow: 0 2px 12px rgba(0,0,0,0.08);
     --shadow-lg: 0 8px 28px rgba(0,0,0,0.14);
   }
-  html, body {
-    font-family: 'Poppins', system-ui, sans-serif;
-    background: var(--gris-muy-claro);
-    color: var(--negro);
-    min-height: 100vh;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+  html, body { font-family: 'Poppins', system-ui, sans-serif; background: var(--gris-muy-claro); color: var(--negro); min-height: 100vh; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
   body { padding-bottom: 100px; }
-  .app-header {
-    background: var(--blanco);
-    box-shadow: var(--shadow);
-    padding: 14px 18px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  .app-header { background: var(--blanco); box-shadow: var(--shadow); padding: 14px 18px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 12px; }
   .app-header .escudo-mini { width: 44px; height: 44px; object-fit: contain; }
   .app-header .titulos { flex: 1; min-width: 0; }
-  .app-header h1 {
-    font-size: 17px; font-weight: 700; line-height: 1.1;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .app-header .sub { font-size: 12px; color: var(--gris); font-weight: 500; }
-  .app-header .menu-btn {
-    background: none; border: none; padding: 8px;
-    font-size: 22px; color: var(--negro); cursor: pointer;
-  }
+  .app-header h1 { font-size: 17px; font-weight: 700; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .app-header .sub { font-size: 12px; color: var(--gris); font-weight: 500; display: flex; align-items: center; flex-wrap: wrap; }
+  .app-header .menu-btn { background: none; border: none; padding: 8px; font-size: 22px; color: var(--negro); cursor: pointer; }
   .container { max-width: 700px; margin: 0 auto; padding: 18px; }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    gap: 8px; padding: 14px 22px; border-radius: 12px;
-    font-family: inherit; font-weight: 600; font-size: 15px;
-    border: none; cursor: pointer; transition: transform 0.1s, box-shadow 0.2s;
-    text-decoration: none;
-  }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 22px; border-radius: 12px; font-family: inherit; font-weight: 600; font-size: 15px; border: none; cursor: pointer; transition: transform 0.1s, box-shadow 0.2s; text-decoration: none; }
   .btn:active { transform: scale(0.97); }
   .btn-rojo { background: var(--rojo); color: white; }
   .btn-azul { background: var(--azul); color: white; }
-  .btn-secundario {
-    background: var(--blanco); color: var(--negro);
-    border: 1.5px solid var(--gris-claro);
-  }
-  .btn-verde { background: var(--verde); color: white; }
+  .btn-secundario { background: var(--blanco); color: var(--negro); border: 1.5px solid var(--gris-claro); }
   .btn-full { width: 100%; }
-  .btn-chico { padding: 8px 14px; font-size: 13px; border-radius: 8px; }
-  .btn-iconico { padding: 10px; border-radius: 10px; min-width: 42px; }
   .pantalla { display: none; }
   .pantalla.activa { display: block; animation: fadeIn 0.25s ease; }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .setup-card {
-    background: white; border-radius: 18px; padding: 30px 22px;
-    box-shadow: var(--shadow); margin-top: 30px;
-  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .setup-card { background: white; border-radius: 18px; padding: 30px 22px; box-shadow: var(--shadow); margin-top: 30px; }
   .setup-card h2 { font-size: 22px; margin-bottom: 8px; text-align: center; }
-  .setup-card .descripcion {
-    color: var(--gris); text-align: center; font-size: 14px; margin-bottom: 28px;
-  }
-  .upload-zone {
-    border: 2px dashed var(--gris-claro);
-    border-radius: 14px; padding: 30px 20px;
-    text-align: center; cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
-    margin-bottom: 20px;
-  }
+  .setup-card .descripcion { color: var(--gris); text-align: center; font-size: 14px; margin-bottom: 28px; }
+  .upload-zone { border: 2px dashed var(--gris-claro); border-radius: 14px; padding: 30px 20px; text-align: center; cursor: pointer; margin-bottom: 20px; }
   .upload-zone.con-imagen { border-style: solid; padding: 16px; }
   .upload-zone img { max-height: 120px; max-width: 100%; }
   .upload-zone .icono { font-size: 38px; color: var(--gris); margin-bottom: 8px; }
   .upload-zone .texto-upload { color: var(--gris); font-size: 14px; }
   .field { margin-bottom: 18px; }
-  .field label {
-    display: block; font-size: 12px; font-weight: 600;
-    color: var(--gris); text-transform: uppercase;
-    letter-spacing: 0.5px; margin-bottom: 6px;
-  }
-  .field input, .field textarea, .field select {
-    width: 100%; padding: 13px 14px; border-radius: 10px;
-    border: 1.5px solid var(--gris-claro); font-family: inherit;
-    font-size: 15px; background: white;
-  }
+  .field label { display: block; font-size: 12px; font-weight: 600; color: var(--gris); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .field input, .field textarea { width: 100%; padding: 13px 14px; border-radius: 10px; border: 1.5px solid var(--gris-claro); font-family: inherit; font-size: 15px; background: white; }
   .field input:focus, .field textarea:focus { outline: none; border-color: var(--azul); }
-  .field textarea { resize: vertical; min-height: 90px; }
-    .hero {
-    background: linear-gradient(135deg, var(--rojo) 0%, #b81b27 100%);
-    color: white; padding: 26px 22px; border-radius: 18px;
-    margin-bottom: 18px; position: relative; overflow: hidden;
-  }
-  .hero::after {
-    content: ''; position: absolute; right: -40px; bottom: -40px;
-    width: 180px; height: 180px;
-    background: rgba(255,255,255,0.07); border-radius: 50%;
-  }
+  .hero { background: linear-gradient(135deg, var(--rojo) 0%, #b81b27 100%); color: white; padding: 26px 22px; border-radius: 18px; margin-bottom: 18px; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; right: -40px; bottom: -40px; width: 180px; height: 180px; background: rgba(255,255,255,0.07); border-radius: 50%; }
   .hero h2 { font-size: 22px; margin-bottom: 6px; }
   .hero p { opacity: 0.9; font-size: 14px; margin-bottom: 18px; }
   .hero .btn { background: white; color: var(--rojo); }
-  .section-title {
-    font-size: 13px; font-weight: 700; color: var(--gris);
-    text-transform: uppercase; letter-spacing: 0.8px;
-    margin: 22px 0 12px; padding: 0 4px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .section-title .link {
-    color: var(--azul); text-transform: none; letter-spacing: 0;
-    font-size: 13px; cursor: pointer;
-  }
+  .section-title { font-size: 13px; font-weight: 700; color: var(--gris); text-transform: uppercase; letter-spacing: 0.8px; margin: 22px 0 12px; padding: 0 4px; display: flex; justify-content: space-between; align-items: center; }
+  .section-title .link { color: var(--azul); text-transform: none; letter-spacing: 0; font-size: 13px; cursor: pointer; }
   .lista-partidos { display: flex; flex-direction: column; gap: 10px; }
-  .partido-card {
-    background: white; padding: 16px; border-radius: 14px;
-    box-shadow: var(--shadow); cursor: pointer;
-    display: flex; align-items: center; gap: 14px;
-  }
-  .partido-card .fecha-box {
-    background: var(--gris-muy-claro);
-    border-radius: 10px; padding: 8px 12px;
-    text-align: center; min-width: 60px;
-  }
+  .partido-card { background: white; padding: 16px; border-radius: 14px; box-shadow: var(--shadow); cursor: pointer; display: flex; align-items: center; gap: 14px; }
+  .partido-card .fecha-box { background: var(--gris-muy-claro); border-radius: 10px; padding: 8px 12px; text-align: center; min-width: 60px; }
   .partido-card .fecha-box .dia { font-size: 22px; font-weight: 700; line-height: 1; }
-  .partido-card .fecha-box .mes {
-    font-size: 11px; color: var(--gris); text-transform: uppercase;
-    font-weight: 600; margin-top: 2px;
-  }
+  .partido-card .fecha-box .mes { font-size: 11px; color: var(--gris); text-transform: uppercase; font-weight: 600; margin-top: 2px; }
   .partido-card .info { flex: 1; min-width: 0; }
   .partido-card .rival { font-weight: 600; font-size: 16px; }
   .partido-card .stats { font-size: 12px; color: var(--gris); margin-top: 2px; }
@@ -156,201 +71,82 @@
   .empty-state .icono { font-size: 50px; margin-bottom: 12px; opacity: 0.4; }
   .empty-state h3 { font-size: 16px; margin-bottom: 6px; color: var(--negro); }
   .empty-state p { font-size: 14px; }
-  .back-bar {
-    display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding: 4px 0;
-  }
-  .back-btn {
-    background: none; border: none; font-size: 22px;
-    color: var(--negro); cursor: pointer; padding: 4px 8px;
-  }
-  .back-bar h2 {
-    font-size: 18px; font-weight: 700; flex: 1;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .partido-resumen {
-    background: white; padding: 16px 18px; border-radius: 14px;
-    box-shadow: var(--shadow); margin-bottom: 18px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .partido-resumen .item .label {
-    font-size: 11px; color: var(--gris); font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.5px;
-  }
+  .back-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding: 4px 0; }
+  .back-btn { background: none; border: none; font-size: 22px; color: var(--negro); cursor: pointer; padding: 4px 8px; }
+  .back-bar h2 { font-size: 18px; font-weight: 700; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .partido-resumen { background: white; padding: 16px 18px; border-radius: 14px; box-shadow: var(--shadow); margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+  .partido-resumen .item .label { font-size: 11px; color: var(--gris); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
   .partido-resumen .item .valor { font-size: 16px; font-weight: 600; margin-top: 2px; }
-  .progreso-bar {
-    height: 6px; background: var(--gris-claro); border-radius: 99px;
-    overflow: hidden; margin-bottom: 18px;
-  }
-  .progreso-bar .fill {
-    height: 100%; background: linear-gradient(90deg, var(--rojo), var(--azul));
-    transition: width 0.3s;
-  }
+  .progreso-bar { height: 6px; background: var(--gris-claro); border-radius: 99px; overflow: hidden; margin-bottom: 18px; }
+  .progreso-bar .fill { height: 100%; background: linear-gradient(90deg, var(--rojo), var(--azul)); transition: width 0.3s; }
   .lista-jugadores { display: flex; flex-direction: column; gap: 8px; }
-  .jugador-row {
-    background: white; padding: 14px 16px; border-radius: 12px;
-    box-shadow: var(--shadow);
-    display: flex; align-items: center; gap: 12px; cursor: pointer;
-  }
-  .jugador-row .avatar {
-    width: 38px; height: 38px; border-radius: 50%;
-    background: var(--gris-claro); display: flex;
-    align-items: center; justify-content: center;
-    font-weight: 700; color: var(--gris);
-    font-size: 14px; flex-shrink: 0;
-  }
+  .jugador-row { background: white; padding: 14px 16px; border-radius: 12px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 12px; cursor: pointer; }
+  .jugador-row .avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--gris-claro); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--gris); font-size: 14px; flex-shrink: 0; }
   .jugador-row.completo .avatar { background: var(--verde); color: white; }
   .jugador-row .nombre { flex: 1; font-weight: 500; font-size: 15px; }
   .jugador-row .acciones { display: flex; gap: 6px; }
-  .icon-btn {
-    background: var(--gris-muy-claro); border: none;
-    width: 34px; height: 34px; border-radius: 8px;
-    cursor: pointer; font-size: 15px;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .icon-btn { background: var(--gris-muy-claro); border: none; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; }
   .icon-btn.azul { background: var(--azul); color: white; }
-  .icon-btn.rojo-soft { background: #fde4e6; color: var(--rojo); }
   .acciones-footer { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
-  .form-jugador-header {
-    background: white; padding: 18px; border-radius: 14px;
-    box-shadow: var(--shadow); margin-bottom: 16px;
-    border-left: 5px solid var(--rojo);
-  }
-  .form-jugador-header .label {
-    font-size: 11px; color: var(--gris); text-transform: uppercase;
-    letter-spacing: 0.5px; font-weight: 600;
-  }
+  .form-jugador-header { background: white; padding: 18px; border-radius: 14px; box-shadow: var(--shadow); margin-bottom: 16px; border-left: 5px solid var(--rojo); }
+  .form-jugador-header .label { font-size: 11px; color: var(--gris); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
   .form-jugador-header .nombre { font-size: 22px; font-weight: 700; margin-top: 2px; }
   .form-jugador-header .partido-info { font-size: 13px; color: var(--gris); margin-top: 6px; }
-  .seccion-card {
-    background: white; border-radius: 14px; padding: 16px;
-    box-shadow: var(--shadow); margin-bottom: 12px;
-    border-left: 4px solid var(--rojo);
-  }
+  .seccion-card { background: white; border-radius: 14px; padding: 16px; box-shadow: var(--shadow); margin-bottom: 12px; border-left: 4px solid var(--rojo); }
   .seccion-card:nth-child(even) { border-left-color: var(--azul); }
-  .seccion-card label {
-    font-size: 13px; font-weight: 700; color: var(--rojo);
-    text-transform: uppercase; letter-spacing: 0.5px;
-    margin-bottom: 8px; display: block;
-  }
+  .seccion-card label { font-size: 13px; font-weight: 700; color: var(--rojo); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: block; }
   .seccion-card:nth-child(even) label { color: var(--azul); }
-  .seccion-card textarea {
-    width: 100%; border: none; resize: vertical;
-    font-family: inherit; font-size: 15px; min-height: 80px;
-    padding: 6px 0; background: transparent;
-  }
+  .seccion-card textarea { width: 100%; border: none; resize: vertical; font-family: inherit; font-size: 15px; min-height: 80px; padding: 6px 0; background: transparent; }
   .seccion-card textarea:focus { outline: none; }
-  .seccion-card .hint { font-size: 12px; color: var(--gris); margin-top: 6px; font-style: italic; }
-  .acciones-form {
-    position: sticky; bottom: 0; background: var(--gris-muy-claro);
-    padding: 14px 0 6px; margin-top: 20px;
-    display: flex; gap: 10px;
-  }
+  .acciones-form { position: sticky; bottom: 0; background: var(--gris-muy-claro); padding: 14px 0 6px; margin-top: 20px; display: flex; gap: 10px; }
   .acciones-form .btn { flex: 1; }
-    .modal-overlay {
-    display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.5); z-index: 1000;
-    align-items: flex-end; justify-content: center;
-    animation: fadeIn 0.2s ease;
-  }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: flex-end; justify-content: center; animation: fadeIn 0.2s ease; }
   .modal-overlay.activo { display: flex; }
-  .modal-content {
-    background: white; width: 100%; max-width: 700px;
-    border-radius: 18px 18px 0 0;
-    padding: 22px; max-height: 90vh; overflow-y: auto;
-    animation: slideUp 0.25s ease;
-  }
-  @keyframes slideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
-  }
+  .modal-content { background: white; width: 100%; max-width: 700px; border-radius: 18px 18px 0 0; padding: 22px; max-height: 90vh; overflow-y: auto; animation: slideUp 0.25s ease; }
+  @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
   .modal-content h3 { font-size: 19px; margin-bottom: 16px; }
-  .modal-close {
-    position: absolute; top: 14px; right: 14px;
-    background: none; border: none; font-size: 28px;
-    cursor: pointer; color: var(--gris);
-  }
+  .modal-close { position: absolute; top: 14px; right: 14px; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--gris); }
   .modal-actions { display: flex; gap: 10px; margin-top: 18px; }
   .modal-actions .btn { flex: 1; }
-  .menu-overlay {
-    display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.4); z-index: 999;
-  }
+  .menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 999; }
   .menu-overlay.activo { display: block; }
-  .menu-panel {
-    position: fixed; top: 0; right: 0; height: 100vh;
-    width: 80%; max-width: 320px; background: white;
-    z-index: 1001; padding: 24px 18px;
-    box-shadow: -4px 0 24px rgba(0,0,0,0.18);
-    transform: translateX(100%); transition: transform 0.25s;
-    overflow-y: auto;
-  }
+  .menu-panel { position: fixed; top: 0; right: 0; height: 100vh; width: 80%; max-width: 320px; background: white; z-index: 1001; padding: 24px 18px; box-shadow: -4px 0 24px rgba(0,0,0,0.18); transform: translateX(100%); transition: transform 0.25s; overflow-y: auto; }
   .menu-overlay.activo .menu-panel { transform: translateX(0); }
-  .menu-panel h3 {
-    font-size: 15px; color: var(--gris); text-transform: uppercase;
-    letter-spacing: 0.6px; margin-bottom: 14px; font-weight: 700;
-  }
-  .menu-item {
-    width: 100%; text-align: left; background: none; border: none;
-    padding: 14px 4px; font-family: inherit; font-size: 15px;
-    cursor: pointer; display: flex; align-items: center; gap: 12px;
-    border-bottom: 1px solid var(--gris-claro);
-    color: var(--negro);
-  }
+  .menu-panel h3 { font-size: 15px; color: var(--gris); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 14px; font-weight: 700; }
+  .menu-item { width: 100%; text-align: left; background: none; border: none; padding: 14px 4px; font-family: inherit; font-size: 15px; cursor: pointer; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--gris-claro); color: var(--negro); }
   .menu-item:last-child { border-bottom: none; }
-  .menu-item .ico {
-    width: 32px; height: 32px; border-radius: 8px;
-    background: var(--gris-muy-claro);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-  }
+  .menu-item .ico { width: 32px; height: 32px; border-radius: 8px; background: var(--gris-muy-claro); display: flex; align-items: center; justify-content: center; font-size: 16px; }
   .menu-item.rojo { color: var(--rojo); }
   .menu-item.rojo .ico { background: #fde4e6; }
-  .jugador-edit-row {
-    background: white; padding: 12px 14px; border-radius: 10px;
-    margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
-    box-shadow: var(--shadow);
-  }
-  .jugador-edit-row input {
-    flex: 1; border: none; padding: 4px 0;
-    font-family: inherit; font-size: 15px;
-  }
+  .menu-info-usuario { background: var(--gris-muy-claro); padding: 12px; border-radius: 10px; margin-bottom: 14px; font-size: 13px; color: var(--gris); word-break: break-all; }
+  .menu-info-usuario strong { color: var(--negro); display: block; margin-bottom: 4px; }
+  .sync-indicator { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 2px 8px; border-radius: 99px; margin-left: 6px; background: var(--gris-muy-claro); }
+  .sync-indicator.activo { color: var(--verde); background: #e6f7ed; }
+  .sync-indicator.error { color: var(--rojo); background: #fde4e6; }
+  .jugador-edit-row { background: white; padding: 12px 14px; border-radius: 10px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow); }
+  .jugador-edit-row input { flex: 1; border: none; padding: 4px 0; font-family: inherit; font-size: 15px; }
   .jugador-edit-row input:focus { outline: none; }
-  .jugador-edit-row button {
-    background: #fde4e6; color: var(--rojo); border: none;
-    width: 32px; height: 32px; border-radius: 8px;
-    cursor: pointer; font-size: 16px;
-  }
-  .preview-container {
-    background: white; border-radius: 14px; overflow: hidden;
-    box-shadow: var(--shadow); margin-bottom: 16px;
-  }
+  .jugador-edit-row button { background: #fde4e6; color: var(--rojo); border: none; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 16px; }
+  .preview-container { background: white; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 16px; }
   .preview-container canvas { width: 100%; height: auto; display: block; }
   .preview-actions { display: flex; gap: 10px; margin-bottom: 12px; }
   .preview-actions .btn { flex: 1; }
-  .historial-card {
-    background: white; padding: 14px 16px; border-radius: 12px;
-    box-shadow: var(--shadow); margin-bottom: 10px; cursor: pointer;
-  }
-  .historial-card .top {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 6px;
-  }
+  .historial-card { background: white; padding: 14px 16px; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 10px; cursor: pointer; }
+  .historial-card .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
   .historial-card .fecha { font-weight: 600; font-size: 14px; }
   .historial-card .rival { font-size: 13px; color: var(--gris); }
-  .historial-card .preview-texto {
-    font-size: 13px; color: var(--gris);
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .toast {
-    position: fixed; bottom: 30px; left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--negro); color: white;
-    padding: 12px 20px; border-radius: 99px;
-    font-size: 14px; box-shadow: var(--shadow-lg);
-    opacity: 0; transition: all 0.3s; z-index: 2000;
-    pointer-events: none;
-  }
+  .historial-card .preview-texto { font-size: 13px; color: var(--gris); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--negro); color: white; padding: 12px 20px; border-radius: 99px; font-size: 14px; box-shadow: var(--shadow-lg); opacity: 0; transition: all 0.3s; z-index: 2000; pointer-events: none; }
   .toast.activo { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .login-screen { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 22px; text-align: center; }
+  .login-screen .logo-app { width: 80px; height: 80px; background: linear-gradient(135deg, var(--rojo), var(--azul)); border-radius: 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: center; color: white; font-size: 38px; font-weight: 700; box-shadow: var(--shadow-lg); }
+  .login-screen h1 { font-size: 26px; margin-bottom: 8px; }
+  .login-screen p { color: var(--gris); margin-bottom: 32px; max-width: 320px; }
+  .btn-google { background: white; color: var(--negro); border: 1.5px solid var(--gris-claro); padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 12px; cursor: pointer; font-family: inherit; }
+  .btn-google:active { transform: scale(0.97); }
+  .btn-google svg { width: 20px; height: 20px; }
+  .loader { width: 36px; height: 36px; border: 3px solid var(--gris-claro); border-top-color: var(--rojo); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
@@ -359,12 +155,31 @@
   <img class="escudo-mini" id="escudoMini" alt="Escudo">
   <div class="titulos">
     <h1 id="nombreClubHeader">Club</h1>
-    <div class="sub">Categoría 2009 · 6ta División</div>
+    <div class="sub">Categoría 2009 · 6ta División<span class="sync-indicator activo" id="syncIndicator">☁️</span></div>
   </div>
   <button class="menu-btn" onclick="abrirMenu()">☰</button>
 </div>
 
 <div class="container">
+
+  <div class="pantalla" id="pLogin">
+    <div class="login-screen">
+      <div class="logo-app">⚽</div>
+      <h1>Informes Post-Partido</h1>
+      <p>Iniciá sesión con tu cuenta de Google para acceder a tus informes en todos tus dispositivos.</p>
+      <button class="btn-google" onclick="loginConGoogle()">
+        <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        Continuar con Google
+      </button>
+    </div>
+  </div>
+
+  <div class="pantalla" id="pCargando">
+    <div class="login-screen">
+      <div class="loader"></div>
+      <p style="margin-top:20px;">Cargando...</p>
+    </div>
+  </div>
 
   <div class="pantalla" id="pSetup">
     <div class="setup-card">
@@ -402,40 +217,27 @@
       <h2>Informes del partido</h2>
     </div>
     <div class="partido-resumen">
-      <div class="item">
-        <div class="label">Fecha</div>
-        <div class="valor" id="partidoFecha">—</div>
-      </div>
-      <div class="item" style="text-align:right;">
-        <div class="label">Rival</div>
-        <div class="valor" id="partidoRival">—</div>
-      </div>
+      <div class="item"><div class="label">Fecha</div><div class="valor" id="partidoFecha">—</div></div>
+      <div class="item" style="text-align:right;"><div class="label">Rival</div><div class="valor" id="partidoRival">—</div></div>
     </div>
     <div class="progreso-bar"><div class="fill" id="progresoFill" style="width:0%"></div></div>
     <div style="text-align:center; font-size:13px; color:var(--gris); margin-bottom:18px;" id="progresoTexto">0 de 0 informes</div>
-    <div class="section-title">
-      Jugadores
-      <span class="link" onclick="irA('pPlantel')">Editar plantel</span>
-    </div>
+    <div class="section-title">Jugadores<span class="link" onclick="irA('pPlantel')">Editar plantel</span></div>
     <div class="lista-jugadores" id="listaJugadoresPartido"></div>
     <div class="acciones-footer">
       <button class="btn btn-azul btn-full" onclick="descargarTodos()">📥 Descargar informes completados</button>
       <button class="btn btn-secundario btn-full" onclick="confirmarBorrarPartido()" style="color: var(--rojo);">🗑 Eliminar este partido</button>
     </div>
   </div>
+
   <div class="pantalla" id="pInforme">
-    <div class="back-bar">
-      <button class="back-btn" onclick="volverDeInforme()">‹</button>
-      <h2>Informe</h2>
-    </div>
+    <div class="back-bar"><button class="back-btn" onclick="volverDeInforme()">‹</button><h2>Informe</h2></div>
     <div class="form-jugador-header">
       <div class="label">Jugador</div>
       <div class="nombre" id="informeNombreJugador">—</div>
       <div class="partido-info" id="informePartidoInfo">—</div>
     </div>
-    <div style="font-size:13px; color:var(--gris); margin-bottom:12px; padding:0 4px;">
-      Llená solo las secciones que quieras. Las que dejes vacías no aparecen en la imagen.
-    </div>
+    <div style="font-size:13px; color:var(--gris); margin-bottom:12px; padding:0 4px;">Llená solo las secciones que quieras. Las que dejes vacías no aparecen en la imagen.</div>
     <div id="seccionesContainer"></div>
     <div class="acciones-form">
       <button class="btn btn-secundario" onclick="volverDeInforme()">Volver</button>
@@ -444,49 +246,29 @@
   </div>
 
   <div class="pantalla" id="pPreview">
-    <div class="back-bar">
-      <button class="back-btn" onclick="volverDePreview()">‹</button>
-      <h2>Vista previa</h2>
-    </div>
-    <div class="preview-container">
-      <canvas id="previewCanvas" width="1080" height="1920"></canvas>
-    </div>
+    <div class="back-bar"><button class="back-btn" onclick="volverDePreview()">‹</button><h2>Vista previa</h2></div>
+    <div class="preview-container"><canvas id="previewCanvas" width="1080" height="1920"></canvas></div>
     <div class="preview-actions">
       <button class="btn btn-secundario" onclick="volverDePreview()">Editar</button>
-      <button class="btn btn-rojo" onclick="descargarImagenActual()">📥 Descargar</button>
+      <button class="btn btn-rojo" onclick="compartirImagenActual()">📤 Compartir</button>
     </div>
   </div>
 
   <div class="pantalla" id="pPlantel">
-    <div class="back-bar">
-      <button class="back-btn" onclick="volverDePlantel()">‹</button>
-      <h2>Plantel</h2>
-    </div>
-    <div style="font-size:13px; color:var(--gris); margin-bottom:14px; padding:0 4px;">
-      Agregá, editá o quitá jugadores. Los cambios aplican a partidos futuros.
-    </div>
+    <div class="back-bar"><button class="back-btn" onclick="volverDePlantel()">‹</button><h2>Plantel</h2></div>
+    <div style="font-size:13px; color:var(--gris); margin-bottom:14px; padding:0 4px;">Agregá, editá o quitá jugadores. Los cambios aplican a partidos futuros.</div>
     <div id="listaPlantel"></div>
-    <div style="margin-top:14px;">
-      <button class="btn btn-azul btn-full" onclick="agregarJugadorPrompt()">+ Agregar jugador</button>
-    </div>
+    <div style="margin-top:14px;"><button class="btn btn-azul btn-full" onclick="agregarJugadorPrompt()">+ Agregar jugador</button></div>
   </div>
 
   <div class="pantalla" id="pHistorialJugador">
-    <div class="back-bar">
-      <button class="back-btn" onclick="volverDeHistorial()">‹</button>
-      <h2 id="historialNombre">—</h2>
-    </div>
+    <div class="back-bar"><button class="back-btn" onclick="volverDeHistorial()">‹</button><h2 id="historialNombre">—</h2></div>
     <div id="listaHistorial"></div>
   </div>
 
   <div class="pantalla" id="pTodosJugadores">
-    <div class="back-bar">
-      <button class="back-btn" onclick="irA('pInicio')">‹</button>
-      <h2>Ver evolución por jugador</h2>
-    </div>
-    <div style="font-size:13px; color:var(--gris); margin-bottom:14px; padding:0 4px;">
-      Tocá un jugador para ver todos sus informes a lo largo del tiempo.
-    </div>
+    <div class="back-bar"><button class="back-btn" onclick="irA('pInicio')">‹</button><h2>Ver evolución por jugador</h2></div>
+    <div style="font-size:13px; color:var(--gris); margin-bottom:14px; padding:0 4px;">Tocá un jugador para ver todos sus informes a lo largo del tiempo.</div>
     <div id="listaTodosJugadores"></div>
   </div>
 
@@ -496,14 +278,8 @@
   <div class="modal-content" style="position:relative;">
     <button class="modal-close" onclick="cerrarModal('modalNuevoPartido')">×</button>
     <h3>Nuevo partido</h3>
-    <div class="field">
-      <label>Fecha</label>
-      <input type="date" id="nuevoPartidoFecha">
-    </div>
-    <div class="field">
-      <label>Rival</label>
-      <input type="text" id="nuevoPartidoRival" placeholder="Ej: CA Platense">
-    </div>
+    <div class="field"><label>Fecha</label><input type="date" id="nuevoPartidoFecha"></div>
+    <div class="field"><label>Rival</label><input type="text" id="nuevoPartidoRival" placeholder="Ej: CA Platense"></div>
     <div class="modal-actions">
       <button class="btn btn-secundario" onclick="cerrarModal('modalNuevoPartido')">Cancelar</button>
       <button class="btn btn-rojo" onclick="crearPartido()">Crear</button>
@@ -514,56 +290,50 @@
 <div class="menu-overlay" id="menuOverlay" onclick="cerrarMenu(event)">
   <div class="menu-panel" onclick="event.stopPropagation()">
     <h3>Menú</h3>
-    <button class="menu-item" onclick="cerrarMenu(); irA('pInicio')">
-      <div class="ico">🏠</div>Inicio
-    </button>
-    <button class="menu-item" onclick="cerrarMenu(); irA('pTodosJugadores'); renderTodosJugadores()">
-      <div class="ico">👥</div>Evolución por jugador
-    </button>
-    <button class="menu-item" onclick="cerrarMenu(); irA('pPlantel'); renderPlantel()">
-      <div class="ico">📋</div>Editar plantel
-    </button>
-    <button class="menu-item" onclick="cerrarMenu(); exportarRespaldo()">
-      <div class="ico">💾</div>Descargar respaldo
-    </button>
-    <button class="menu-item" onclick="cerrarMenu(); document.getElementById('importarInput').click()">
-      <div class="ico">📂</div>Importar respaldo
-    </button>
+    <div class="menu-info-usuario" id="menuInfoUsuario" style="display:none;"></div>
+    <button class="menu-item" onclick="cerrarMenu(); irA('pInicio')"><div class="ico">🏠</div>Inicio</button>
+    <button class="menu-item" onclick="cerrarMenu(); irA('pTodosJugadores'); renderTodosJugadores()"><div class="ico">👥</div>Evolución por jugador</button>
+    <button class="menu-item" onclick="cerrarMenu(); irA('pPlantel'); renderPlantel()"><div class="ico">📋</div>Editar plantel</button>
+    <button class="menu-item" onclick="cerrarMenu(); exportarRespaldo()"><div class="ico">💾</div>Descargar respaldo</button>
+    <button class="menu-item" onclick="cerrarMenu(); document.getElementById('importarInput').click()"><div class="ico">📂</div>Importar respaldo</button>
     <input type="file" id="importarInput" accept="application/json" style="display:none" onchange="importarRespaldo(event)">
-    <button class="menu-item" onclick="cerrarMenu(); cambiarEscudo()">
-      <div class="ico">🛡</div>Cambiar escudo / club
-    </button>
+    <button class="menu-item" onclick="cerrarMenu(); cambiarEscudo()"><div class="ico">🛡</div>Cambiar escudo / club</button>
     <input type="file" id="cambiarEscudoInput" accept="image/*" style="display:none" onchange="aplicarCambioEscudo(event)">
-    <button class="menu-item rojo" onclick="cerrarMenu(); confirmarBorrarTodo()">
-      <div class="ico">⚠️</div>Borrar todos los datos
-    </button>
+    <button class="menu-item" onclick="cerrarMenu(); cerrarSesion()"><div class="ico">🚪</div>Cerrar sesión</button>
+    <button class="menu-item rojo" onclick="cerrarMenu(); confirmarBorrarTodo()"><div class="ico">⚠️</div>Borrar todos los datos</button>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<script>
-let estado = {
-  config: { escudo: null, nombreClub: 'Club Atlético Tigre' },
-  jugadores: [],
-  partidos: [],
-  partidoActual: null,
-  jugadorActual: null,
-  pantallaAnterior: null,
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBXeGgOvE0111Zvavh6mwZMzSZZpo3_jfc",
+  authDomain: "informespostpartido.firebaseapp.com",
+  projectId: "informespostpartido",
+  storageBucket: "informespostpartido.firebasestorage.app",
+  messagingSenderId: "334912896528",
+  appId: "1:334912896528:web:aa2bd83d304d068db55495",
+  measurementId: "G-PCL4GL587P"
 };
 
-const STORAGE_KEY = 'informes-tigre-v1';
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
 
-function guardar() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
-}
-function cargar() {
-  const data = localStorage.getItem(STORAGE_KEY);
-  if (data) {
-    try { estado = JSON.parse(data); }
-    catch(e) { console.error('Error cargando datos:', e); }
-  }
-}
+window.fb = { auth, db, provider, doc, setDoc, getDoc, onSnapshot, signInWithPopup, signOut, onAuthStateChanged };
+</script>
+
+<script>
+let estado = { config: { escudo: null, nombreClub: 'Club Atlético Tigre' }, jugadores: [], partidos: [], partidoActual: null, jugadorActual: null, pantallaAnterior: null };
+let usuarioActual = null;
+let guardadoTimeout = null;
+let unsubscribeSync = null;
 
 const SECCIONES = [
   { key: 'actitudinal', titulo: 'ACTITUDINAL', hint: 'Compromiso, actitud, energía' },
@@ -577,8 +347,82 @@ const SECCIONES = [
 function irA(pantallaId) {
   document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
   document.getElementById(pantallaId).classList.add('activa');
-  document.getElementById('appHeader').style.display = (pantallaId === 'pSetup') ? 'none' : 'flex';
+  document.getElementById('appHeader').style.display = (pantallaId === 'pSetup' || pantallaId === 'pLogin' || pantallaId === 'pCargando') ? 'none' : 'flex';
   window.scrollTo(0, 0);
+}
+
+function setSyncStatus(s) {
+  const ind = document.getElementById('syncIndicator');
+  if (!ind) return;
+  if (s === 'sincronizado') { ind.className = 'sync-indicator activo'; ind.textContent = '☁️'; }
+  else if (s === 'guardando') { ind.className = 'sync-indicator'; ind.textContent = '⏳'; }
+  else if (s === 'error') { ind.className = 'sync-indicator error'; ind.textContent = '⚠️'; }
+}
+
+async function loginConGoogle() {
+  try { await window.fb.signInWithPopup(window.fb.auth, window.fb.provider); }
+  catch (err) {
+    if (err.code !== 'auth/popup-closed-by-user' && err.code !== 'auth/cancelled-popup-request') {
+      console.error(err); mostrarToast('Error al iniciar sesión');
+    }
+  }
+}
+
+async function cerrarSesion() {
+  if (!confirm('¿Cerrar sesión?')) return;
+  if (unsubscribeSync) unsubscribeSync();
+  await window.fb.signOut(window.fb.auth);
+  estado = { config: { escudo: null, nombreClub: 'Club Atlético Tigre' }, jugadores: [], partidos: [], partidoActual: null, jugadorActual: null, pantallaAnterior: null };
+  usuarioActual = null;
+  irA('pLogin');
+}
+
+async function cargarDatosUsuario() {
+  if (!usuarioActual) return;
+  setSyncStatus('guardando');
+  try {
+    const ref = window.fb.doc(window.fb.db, 'usuarios', usuarioActual.uid);
+    const snap = await window.fb.getDoc(ref);
+    if (snap.exists()) {
+      const data = snap.data();
+      estado = {
+        config: data.config || { escudo: null, nombreClub: 'Club Atlético Tigre' },
+        jugadores: data.jugadores || [],
+        partidos: data.partidos || [],
+        partidoActual: null, jugadorActual: null, pantallaAnterior: null,
+      };
+    }
+    setSyncStatus('sincronizado');
+    if (unsubscribeSync) unsubscribeSync();
+    unsubscribeSync = window.fb.onSnapshot(ref, (snap) => {
+      if (snap.exists() && snap.metadata.hasPendingWrites === false) {
+        const data = snap.data();
+        const cambio = JSON.stringify(data.partidos) !== JSON.stringify(estado.partidos) || JSON.stringify(data.jugadores) !== JSON.stringify(estado.jugadores);
+        if (cambio) {
+          estado.config = data.config || estado.config;
+          estado.jugadores = data.jugadores || [];
+          estado.partidos = data.partidos || [];
+          if (document.getElementById('pInicio').classList.contains('activa')) renderInicio();
+          if (document.getElementById('pPartido').classList.contains('activa')) renderPartido();
+          if (document.getElementById('pPlantel').classList.contains('activa')) renderPlantel();
+          if (document.getElementById('pTodosJugadores').classList.contains('activa')) renderTodosJugadores();
+        }
+      }
+    });
+  } catch (err) { console.error(err); setSyncStatus('error'); }
+}
+
+async function guardar() {
+  if (!usuarioActual) return;
+  clearTimeout(guardadoTimeout);
+  setSyncStatus('guardando');
+  guardadoTimeout = setTimeout(async () => {
+    try {
+      const ref = window.fb.doc(window.fb.db, 'usuarios', usuarioActual.uid);
+      await window.fb.setDoc(ref, { config: estado.config, jugadores: estado.jugadores, partidos: estado.partidos, actualizadoEn: new Date().toISOString() });
+      setSyncStatus('sincronizado');
+    } catch (err) { console.error(err); setSyncStatus('error'); }
+  }, 500);
 }
 
 function cargarEscudoSetup(e) {
@@ -606,8 +450,13 @@ function guardarSetup() {
 }
 
 function actualizarHeaderApp() {
-  document.getElementById('escudoMini').src = estado.config.escudo;
+  if (estado.config.escudo) document.getElementById('escudoMini').src = estado.config.escudo;
   document.getElementById('nombreClubHeader').textContent = estado.config.nombreClub;
+  if (usuarioActual) {
+    const info = document.getElementById('menuInfoUsuario');
+    info.style.display = 'block';
+    info.innerHTML = '<strong>Conectado como</strong>' + (usuarioActual.email || usuarioActual.displayName || '');
+  }
 }
 
 function abrirMenu() { document.getElementById('menuOverlay').classList.add('activo'); }
@@ -616,9 +465,7 @@ function cerrarMenu(e) {
   document.getElementById('menuOverlay').classList.remove('activo');
 }
 
-function cambiarEscudo() {
-  document.getElementById('cambiarEscudoInput').click();
-}
+function cambiarEscudo() { document.getElementById('cambiarEscudoInput').click(); }
 function aplicarCambioEscudo(e) {
   const file = e.target.files[0];
   if (!file) return;
@@ -628,11 +475,7 @@ function aplicarCambioEscudo(e) {
     guardar();
     actualizarHeaderApp();
     const nuevo = prompt('Nombre del club:', estado.config.nombreClub);
-    if (nuevo && nuevo.trim()) {
-      estado.config.nombreClub = nuevo.trim();
-      guardar();
-      actualizarHeaderApp();
-    }
+    if (nuevo && nuevo.trim()) { estado.config.nombreClub = nuevo.trim(); guardar(); actualizarHeaderApp(); }
     mostrarToast('Actualizado');
   };
   reader.readAsDataURL(file);
@@ -640,12 +483,12 @@ function aplicarCambioEscudo(e) {
 
 function renderInicio() {
   const cont = document.getElementById('listaPartidos');
-  if (estado.partidos.length === 0) {
+  if (!estado.partidos || estado.partidos.length === 0) {
     cont.innerHTML = '<div class="empty-state"><div class="icono">⚽</div><h3>Todavía no hay partidos</h3><p>Tocá "Nuevo partido" para empezar</p></div>';
     return;
   }
-  const partidosOrdenados = [...estado.partidos].sort((a,b) => b.fecha.localeCompare(a.fecha));
-  cont.innerHTML = partidosOrdenados.map(p => {
+  const partidos = [...estado.partidos].sort((a,b) => b.fecha.localeCompare(a.fecha));
+  cont.innerHTML = partidos.map(p => {
     const fecha = new Date(p.fecha + 'T12:00:00');
     const dia = fecha.getDate();
     const meses = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
@@ -655,14 +498,10 @@ function renderInicio() {
   }).join('');
 }
 
-function tieneContenido(informe) {
-  if (!informe) return false;
-  return SECCIONES.some(s => informe[s.key] && informe[s.key].trim().length > 0);
-}
+function tieneContenido(informe) { if (!informe) return false; return SECCIONES.some(s => informe[s.key] && informe[s.key].trim().length > 0); }
 
 function nuevoPartido() {
-  const hoy = new Date().toISOString().split('T')[0];
-  document.getElementById('nuevoPartidoFecha').value = hoy;
+  document.getElementById('nuevoPartidoFecha').value = new Date().toISOString().split('T')[0];
   document.getElementById('nuevoPartidoRival').value = '';
   document.getElementById('modalNuevoPartido').classList.add('activo');
 }
@@ -673,7 +512,7 @@ function crearPartido() {
   if (!fecha) { mostrarToast('Falta la fecha'); return; }
   if (!rival) { mostrarToast('Falta el rival'); return; }
   const id = 'p_' + Date.now();
-  estado.partidos.push({ id: id, fecha: fecha, rival: rival, informes: {} });
+  estado.partidos.push({ id, fecha, rival, informes: {} });
   estado.partidoActual = id;
   guardar();
   cerrarModal('modalNuevoPartido');
@@ -681,39 +520,26 @@ function crearPartido() {
   irA('pPartido');
 }
 
-function cerrarModal(id) {
-  document.getElementById(id).classList.remove('activo');}
-  function abrirPartido(id) {
-  estado.partidoActual = id;
-  renderPartido();
-  irA('pPartido');
-}
-
-function getPartidoActual() {
-  return estado.partidos.find(p => p.id === estado.partidoActual);
-}
+function cerrarModal(id) { document.getElementById(id).classList.remove('activo'); }
+function abrirPartido(id) { estado.partidoActual = id; renderPartido(); irA('pPartido'); }
+function getPartidoActual() { return estado.partidos.find(p => p.id === estado.partidoActual); }
 
 function renderPartido() {
   const p = getPartidoActual();
   if (!p) return;
-  const fecha = new Date(p.fecha + 'T12:00:00');
-  const fechaStr = fecha.toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric' });
+  const fechaStr = new Date(p.fecha + 'T12:00:00').toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric' });
   document.getElementById('partidoFecha').textContent = fechaStr;
   document.getElementById('partidoRival').textContent = 'vs. ' + p.rival;
   const total = estado.jugadores.length;
   const completos = estado.jugadores.filter(j => tieneContenido(p.informes[j.id])).length;
-  const porcentaje = total > 0 ? Math.round((completos/total)*100) : 0;
-  document.getElementById('progresoFill').style.width = porcentaje + '%';
+  document.getElementById('progresoFill').style.width = (total > 0 ? Math.round((completos/total)*100) : 0) + '%';
   document.getElementById('progresoTexto').textContent = completos + ' de ' + total + ' informes';
   const cont = document.getElementById('listaJugadoresPartido');
-  if (estado.jugadores.length === 0) {
-    cont.innerHTML = '<div class="empty-state"><div class="icono">👥</div><h3>Todavía no hay jugadores</h3><p>Tocá "Editar plantel" para agregar</p></div>';
-    return;
-  }
+  if (estado.jugadores.length === 0) { cont.innerHTML = '<div class="empty-state"><div class="icono">👥</div><h3>Todavía no hay jugadores</h3><p>Tocá "Editar plantel" para agregar</p></div>'; return; }
   cont.innerHTML = estado.jugadores.map(j => {
     const completo = tieneContenido(p.informes[j.id]);
-    const iniciales = j.nombre.split(' ').slice(0,2).map(s=>s[0]).join('').toUpperCase();
-    return '<div class="jugador-row ' + (completo?'completo':'') + '"><div class="avatar">' + (completo?'✓':escapeHtml(iniciales)) + '</div><div class="nombre" onclick="editarInforme(\'' + j.id + '\')">' + escapeHtml(j.nombre) + '</div><div class="acciones">' + (completo ? '<button class="icon-btn azul" onclick="verPreview(\'' + j.id + '\')" title="Ver imagen">👁</button>' : '') + '<button class="icon-btn" onclick="editarInforme(\'' + j.id + '\')" title="Editar">✏️</button></div></div>';
+    const ini = j.nombre.split(' ').slice(0,2).map(s=>s[0]).join('').toUpperCase();
+    return '<div class="jugador-row ' + (completo?'completo':'') + '"><div class="avatar">' + (completo?'✓':escapeHtml(ini)) + '</div><div class="nombre" onclick="editarInforme(\'' + j.id + '\')">' + escapeHtml(j.nombre) + '</div><div class="acciones">' + (completo ? '<button class="icon-btn azul" onclick="verPreview(\'' + j.id + '\')">👁</button>' : '') + '<button class="icon-btn" onclick="editarInforme(\'' + j.id + '\')">✏️</button></div></div>';
   }).join('');
 }
 
@@ -721,9 +547,7 @@ function confirmarBorrarPartido() {
   if (!confirm('¿Eliminar este partido y todos sus informes?')) return;
   estado.partidos = estado.partidos.filter(p => p.id !== estado.partidoActual);
   estado.partidoActual = null;
-  guardar();
-  renderInicio();
-  irA('pInicio');
+  guardar(); renderInicio(); irA('pInicio');
 }
 
 function editarInforme(jugadorId) {
@@ -733,10 +557,8 @@ function editarInforme(jugadorId) {
   const jugador = estado.jugadores.find(j => j.id === jugadorId);
   const informe = partido.informes[jugadorId] || {};
   document.getElementById('informeNombreJugador').textContent = jugador.nombre;
-  const fecha = new Date(partido.fecha + 'T12:00:00').toLocaleDateString('es-AR');
-  document.getElementById('informePartidoInfo').textContent = fecha + ' · vs. ' + partido.rival;
-  const cont = document.getElementById('seccionesContainer');
-  cont.innerHTML = SECCIONES.map(s => '<div class="seccion-card"><label>' + s.titulo + '</label><textarea id="sec_' + s.key + '" placeholder="' + s.hint + '...">' + escapeHtml(informe[s.key] || '') + '</textarea></div>').join('');
+  document.getElementById('informePartidoInfo').textContent = new Date(partido.fecha + 'T12:00:00').toLocaleDateString('es-AR') + ' · vs. ' + partido.rival;
+  document.getElementById('seccionesContainer').innerHTML = SECCIONES.map(s => '<div class="seccion-card"><label>' + s.titulo + '</label><textarea id="sec_' + s.key + '" placeholder="' + s.hint + '...">' + escapeHtml(informe[s.key] || '') + '</textarea></div>').join('');
   irA('pInforme');
 }
 
@@ -748,9 +570,7 @@ function guardarInforme() {
     if (val) informe[s.key] = val;
   });
   partido.informes[estado.jugadorActual] = informe;
-  guardar();
-  mostrarToast('Informe guardado');
-  volverDeInforme();
+  guardar(); mostrarToast('Informe guardado'); volverDeInforme();
 }
 
 function volverDeInforme() {
@@ -759,31 +579,20 @@ function volverDeInforme() {
     const informe = {};
     SECCIONES.forEach(s => {
       const el = document.getElementById('sec_' + s.key);
-      if (el) {
-        const val = el.value.trim();
-        if (val) informe[s.key] = val;
-      }
+      if (el) { const val = el.value.trim(); if (val) informe[s.key] = val; }
     });
     if (Object.keys(informe).length > 0 || partido.informes[estado.jugadorActual]) {
       partido.informes[estado.jugadorActual] = informe;
       guardar();
     }
   }
-  if (estado.pantallaAnterior === 'pHistorialJugador') {
-    renderHistorialJugador();
-    irA('pHistorialJugador');
-  } else {
-    renderPartido();
-    irA('pPartido');
-  }
+  if (estado.pantallaAnterior === 'pHistorialJugador') { renderHistorialJugador(); irA('pHistorialJugador'); }
+  else { renderPartido(); irA('pPartido'); }
 }
 
 function renderPlantel() {
   const cont = document.getElementById('listaPlantel');
-  if (estado.jugadores.length === 0) {
-    cont.innerHTML = '<div class="empty-state"><div class="icono">📋</div><h3>Plantel vacío</h3><p>Agregá tus jugadores</p></div>';
-    return;
-  }
+  if (estado.jugadores.length === 0) { cont.innerHTML = '<div class="empty-state"><div class="icono">📋</div><h3>Plantel vacío</h3><p>Agregá tus jugadores</p></div>'; return; }
   cont.innerHTML = estado.jugadores.map(j => '<div class="jugador-edit-row"><input type="text" value="' + escapeHtml(j.nombre) + '" onchange="actualizarNombreJugador(\'' + j.id + '\', this.value)"><button onclick="eliminarJugador(\'' + j.id + '\')">🗑</button></div>').join('');
 }
 
@@ -791,138 +600,92 @@ function agregarJugadorPrompt() {
   const nombre = prompt('Nombre del jugador:');
   if (!nombre || !nombre.trim()) return;
   estado.jugadores.push({ id: 'j_' + Date.now(), nombre: nombre.trim() });
-  guardar();
-  renderPlantel();
+  guardar(); renderPlantel();
 }
 
-function actualizarNombreJugador(id, nuevoNombre) {
-  const j = estado.jugadores.find(x => x.id === id);
-  if (j && nuevoNombre.trim()) {
-    j.nombre = nuevoNombre.trim();
-    guardar();
-  }
-}
+function actualizarNombreJugador(id, n) { const j = estado.jugadores.find(x => x.id === id); if (j && n.trim()) { j.nombre = n.trim(); guardar(); } }
 
 function eliminarJugador(id) {
   const j = estado.jugadores.find(x => x.id === id);
   if (!j) return;
   if (!confirm('¿Quitar a ' + j.nombre + ' del plantel?')) return;
   estado.jugadores = estado.jugadores.filter(x => x.id !== id);
-  guardar();
-  renderPlantel();
+  guardar(); renderPlantel();
 }
 
 function volverDePlantel() {
-  if (estado.partidoActual) {
-    renderPartido();
-    irA('pPartido');
-  } else {
-    irA('pInicio');
-    renderInicio();
-  }
+  if (estado.partidoActual) { renderPartido(); irA('pPartido'); }
+  else { irA('pInicio'); renderInicio(); }
 }
 
 function generarImagen(canvas, informe, partido, jugador) {
   const W = 1080, H = 1920;
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext('2d');
-  const ROJO = '#d2202f', AZUL = '#233c82', NEGRO = '#19191e';
-  const GRIS = '#6e6e78', GRIS_CLARO = '#ebebf0', BLANCO = '#ffffff';
+  const ROJO = '#d2202f', AZUL = '#233c82', NEGRO = '#19191e', GRIS = '#6e6e78', GRIS_CLARO = '#ebebf0', BLANCO = '#ffffff';
   ctx.fillStyle = BLANCO; ctx.fillRect(0, 0, W, H);
   ctx.fillStyle = ROJO; ctx.fillRect(0, 0, W/2, 14);
   ctx.fillStyle = AZUL; ctx.fillRect(W/2, 0, W/2, 14);
   ctx.fillStyle = AZUL; ctx.fillRect(0, H-14, W/2, 14);
   ctx.fillStyle = ROJO; ctx.fillRect(W/2, H-14, W/2, 14);
-  let y = 90;
+  let y = 70;
   const MARGEN = 70;
   return new Promise(resolve => {
     const img = new Image();
     img.onload = () => {
-      const escudoSize = 220;
+      const escudoSize = 180;
       const ratio = img.width / img.height;
       let ew, eh;
       if (ratio > 1) { ew = escudoSize; eh = escudoSize / ratio; }
       else { eh = escudoSize; ew = escudoSize * ratio; }
       ctx.drawImage(img, (W - ew)/2, y, ew, eh);
-      y += eh + 28;
-      ctx.fillStyle = NEGRO;
-      ctx.font = 'bold 52px Poppins, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(estado.config.nombreClub.toUpperCase(), W/2, y + 50);
-      y += 75;
-      ctx.font = '500 28px Poppins, sans-serif';
-      ctx.fillStyle = GRIS;
-      ctx.fillText('Categoría 2009  ·  6ta División', W/2, y + 28);
-      y += 60;
+      y += eh + 22;
+      ctx.fillStyle = NEGRO; ctx.font = 'bold 50px Poppins, sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText(estado.config.nombreClub.toUpperCase(), W/2, y + 45); y += 62;
+      ctx.font = '500 26px Poppins, sans-serif'; ctx.fillStyle = GRIS;
+      ctx.fillText('Categoría 2009  ·  6ta División', W/2, y + 26); y += 50;
       ctx.strokeStyle = GRIS_CLARO; ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(MARGEN + 80, y);
-      ctx.lineTo(W - MARGEN - 80, y);
-      ctx.stroke();
-      y += 35;
-      ctx.font = 'bold 42px Poppins, sans-serif';
-      ctx.fillStyle = NEGRO;
-      const tituloTexto = 'INFORME POST-PARTIDO';
-      const tituloW = ctx.measureText(tituloTexto).width;
-      const tx = (W - tituloW) / 2;
-      ctx.fillStyle = ROJO;
-      ctx.fillRect(tx - 70, y + 22, 50, 8);
-      ctx.fillStyle = AZUL;
-      ctx.fillRect(tx + tituloW + 20, y + 22, 50, 8);
-      ctx.fillStyle = NEGRO;
-      ctx.textAlign = 'left';
-      ctx.fillText(tituloTexto, tx, y + 38);
-      y += 80;
-      const fechaObj = new Date(partido.fecha + 'T12:00:00');
-      const fechaStr = fechaObj.toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric' });
-      ctx.font = 'bold 20px Poppins, sans-serif';
-      ctx.fillStyle = GRIS;
-      ctx.textAlign = 'left';
-      ctx.fillText('FECHA', MARGEN + 30, y + 18);
-      ctx.font = '500 30px Poppins, sans-serif';
-      ctx.fillStyle = NEGRO;
-      ctx.fillText(fechaStr, MARGEN + 30, y + 50);
-      ctx.font = 'bold 20px Poppins, sans-serif';
-      ctx.fillStyle = GRIS;
-      ctx.textAlign = 'right';
-      ctx.fillText('RIVAL', W - MARGEN - 30, y + 18);
-      ctx.font = '500 30px Poppins, sans-serif';
-      ctx.fillStyle = NEGRO;
-      ctx.fillText('vs. ' + partido.rival, W - MARGEN - 30, y + 50);
-      y += 110;
-      const jugH = 130;
+      ctx.beginPath(); ctx.moveTo(MARGEN + 80, y); ctx.lineTo(W - MARGEN - 80, y); ctx.stroke();
+      y += 28;
+      ctx.font = 'bold 38px Poppins, sans-serif'; ctx.fillStyle = NEGRO;
+      const tt = 'INFORME POST-PARTIDO';
+      const tw = ctx.measureText(tt).width;
+      const tx = (W - tw) / 2;
+      ctx.fillStyle = ROJO; ctx.fillRect(tx - 63, y + 20, 45, 8);
+      ctx.fillStyle = AZUL; ctx.fillRect(tx + tw + 18, y + 20, 45, 8);
+      ctx.fillStyle = NEGRO; ctx.textAlign = 'left';
+      ctx.fillText(tt, tx, y + 34); y += 68;
+      const fStr = new Date(partido.fecha + 'T12:00:00').toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric' });
+      ctx.font = 'bold 18px Poppins, sans-serif'; ctx.fillStyle = GRIS; ctx.textAlign = 'left';
+      ctx.fillText('FECHA', MARGEN + 30, y + 16);
+      ctx.font = '500 28px Poppins, sans-serif'; ctx.fillStyle = NEGRO;
+      ctx.fillText(fStr, MARGEN + 30, y + 46);
+      ctx.font = 'bold 18px Poppins, sans-serif'; ctx.fillStyle = GRIS; ctx.textAlign = 'right';
+      ctx.fillText('RIVAL', W - MARGEN - 30, y + 16);
+      ctx.font = '500 28px Poppins, sans-serif'; ctx.fillStyle = NEGRO;
+      ctx.fillText('vs. ' + partido.rival, W - MARGEN - 30, y + 46);
+      y += 95;
+      const jugH = 90;
       ctx.fillStyle = '#f8f8fa';
-      roundRect(ctx, MARGEN, y, W - 2*MARGEN, jugH, 18, true);
+      roundRect(ctx, MARGEN, y, W - 2*MARGEN, jugH, 14, true);
       ctx.fillStyle = ROJO;
-      roundRect(ctx, MARGEN, y, 12, jugH, 6, true);
-      ctx.font = '500 22px Poppins, sans-serif';
-      ctx.fillStyle = GRIS;
-      ctx.textAlign = 'left';
-      ctx.fillText('JUGADOR', MARGEN + 40, y + 38);
-      ctx.font = 'bold 50px Poppins, sans-serif';
-      ctx.fillStyle = NEGRO;
-      ctx.fillText(jugador.nombre, MARGEN + 40, y + 90);
-      y += jugH + 50;
-      const seccionesActivas = SECCIONES.filter(s => informe[s.key] && informe[s.key].trim());
-      const maxTextW = W - 2*MARGEN - 50;
-      seccionesActivas.forEach((s, i) => {
-        const color = (i % 2 === 0) ? ROJO : AZUL;
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.arc(MARGEN + 7, y + 18, 7, 0, Math.PI*2);
-        ctx.fill();
-        ctx.font = 'bold 28px Poppins, sans-serif';
-        ctx.fillStyle = color;
-        ctx.textAlign = 'left';
-        ctx.fillText(s.titulo, MARGEN + 30, y + 26);
-        y += 48;
-        ctx.font = '400 26px Poppins, sans-serif';
-        ctx.fillStyle = NEGRO;
-        const lineas = wrapText(ctx, informe[s.key].trim(), maxTextW);
-        lineas.forEach(linea => {
-          ctx.fillText(linea, MARGEN + 30, y + 26);
-          y += 36;
-        });
+      roundRect(ctx, MARGEN, y, 10, jugH, 5, true);
+      ctx.font = '500 18px Poppins, sans-serif'; ctx.fillStyle = GRIS; ctx.textAlign = 'left';
+      ctx.fillText('JUGADOR', MARGEN + 30, y + 28);
+      ctx.font = 'bold 38px Poppins, sans-serif'; ctx.fillStyle = NEGRO;
+      ctx.fillText(jugador.nombre, MARGEN + 30, y + 70);
+      y += jugH + 35;
+      const sa = SECCIONES.filter(s => informe[s.key] && informe[s.key].trim());
+      const mW = W - 2*MARGEN - 50;
+      sa.forEach((s, i) => {
+        const c = (i % 2 === 0) ? ROJO : AZUL;
+        ctx.fillStyle = c;
+        ctx.beginPath(); ctx.arc(MARGEN + 7, y + 18, 7, 0, Math.PI*2); ctx.fill();
+        ctx.font = 'bold 28px Poppins, sans-serif'; ctx.fillStyle = c; ctx.textAlign = 'left';
+        ctx.fillText(s.titulo, MARGEN + 30, y + 26); y += 48;
+        ctx.font = '400 26px Poppins, sans-serif'; ctx.fillStyle = NEGRO;
+        const ls = wrapText(ctx, informe[s.key].trim(), mW);
+        ls.forEach(l => { ctx.fillText(l, MARGEN + 30, y + 26); y += 36; });
         y += 26;
       });
       resolve();
@@ -932,95 +695,87 @@ function generarImagen(canvas, informe, partido, jugador) {
 }
 
 function roundRect(ctx, x, y, w, h, r, fill) {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
+  ctx.beginPath(); ctx.moveTo(x + r, y);
   ctx.arcTo(x + w, y, x + w, y + h, r);
   ctx.arcTo(x + w, y + h, x, y + h, r);
   ctx.arcTo(x, y + h, x, y, r);
   ctx.arcTo(x, y, x + w, y, r);
-  ctx.closePath();
-  if (fill) ctx.fill();
+  ctx.closePath(); if (fill) ctx.fill();
 }
 
-function wrapText(ctx, texto, maxWidth) {
-  const palabras = texto.split(/\s+/);
-  const lineas = [];
-  let actual = '';
-  palabras.forEach(p => {
-    const prueba = actual ? actual + ' ' + p : p;
-    if (ctx.measureText(prueba).width <= maxWidth) {
-      actual = prueba;
-    } else {
-      if (actual) lineas.push(actual);
-      actual = p;
-    }
-  });
-  if (actual) lineas.push(actual);
-  return lineas;
+function wrapText(ctx, t, mw) {
+  const ps = t.split(/\s+/), ls = []; let a = '';
+  ps.forEach(p => { const pb = a ? a + ' ' + p : p; if (ctx.measureText(pb).width <= mw) a = pb; else { if (a) ls.push(a); a = p; } });
+  if (a) ls.push(a); return ls;
 }
 
-async function verPreview(jugadorId) {
-  estado.jugadorActual = jugadorId;
-  estado.pantallaAnterior = 'pPartido';
+async function verPreview(jid) {
+  estado.jugadorActual = jid; estado.pantallaAnterior = 'pPartido';
   const partido = getPartidoActual();
-  const jugador = estado.jugadores.find(j => j.id === jugadorId);
-  const informe = partido.informes[jugadorId];
-  if (!informe || !tieneContenido(informe)) {
-    mostrarToast('Cargá el informe primero');
-    return;
-  }
+  const jugador = estado.jugadores.find(j => j.id === jid);
+  const informe = partido.informes[jid];
+  if (!informe || !tieneContenido(informe)) { mostrarToast('Cargá el informe primero'); return; }
   irA('pPreview');
-  const canvas = document.getElementById('previewCanvas');
-  await generarImagen(canvas, informe, partido, jugador);
+  await generarImagen(document.getElementById('previewCanvas'), informe, partido, jugador);
 }
 
 function volverDePreview() {
-  if (estado.pantallaAnterior === 'pHistorialJugador') {
-    renderHistorialJugador();
-    irA('pHistorialJugador');
-  } else {
-    renderPartido();
-    irA('pPartido');
-  }
+  if (estado.pantallaAnterior === 'pHistorialJugador') { renderHistorialJugador(); irA('pHistorialJugador'); }
+  else { renderPartido(); irA('pPartido'); }
 }
 
-async function descargarImagenActual() {
+async function compartirImagenActual() {
   const jugador = estado.jugadores.find(j => j.id === estado.jugadorActual);
-  const partido = getPartidoActual();
-  await descargarImagen(estado.jugadorActual, jugador, partido);
+  await compartirImagen(estado.jugadorActual, jugador, getPartidoActual());
 }
 
-async function descargarImagen(jugadorId, jugador, partido) {
-  const informe = partido.informes[jugadorId];
+async function compartirImagen(jid, jugador, partido) {
+  const informe = partido.informes[jid];
+  const canvas = document.createElement('canvas');
+  await generarImagen(canvas, informe, partido, jugador);
+  return new Promise(resolve => {
+    canvas.toBlob(async blob => {
+      const fs = partido.fecha.replace(/-/g, '');
+      const nl = jugador.nombre.replace(/[^a-zA-Z0-9_\s]/g, '').replace(/\s+/g, '_');
+      const fn = 'Informe_' + nl + '_' + fs + '.png';
+      const file = new File([blob], fn, { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try { await navigator.share({ files: [file], title: 'Informe de ' + jugador.nombre }); resolve(); return; }
+        catch (err) { if (err.name !== 'AbortError') console.error(err); resolve(); return; }
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.download = fn; a.href = url;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 500);
+      mostrarToast('Imagen descargada'); resolve();
+    }, 'image/png');
+  });
+}
+
+async function descargarImagen(jid, jugador, partido) {
+  const informe = partido.informes[jid];
   const canvas = document.createElement('canvas');
   await generarImagen(canvas, informe, partido, jugador);
   return new Promise(resolve => {
     canvas.toBlob(blob => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      const fechaStr = partido.fecha.replace(/-/g, '');
-      const nombreLimpio = jugador.nombre.replace(/[^a-zA-Z0-9_\s]/g, '').replace(/\s+/g, '_');
-      a.download = 'Informe_' + nombreLimpio + '_' + fechaStr + '.png';
-      a.href = url;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(() => URL.revokeObjectURL(url), 500);
-      resolve();
+      const fs = partido.fecha.replace(/-/g, '');
+      const nl = jugador.nombre.replace(/[^a-zA-Z0-9_\s]/g, '').replace(/\s+/g, '_');
+      a.download = 'Informe_' + nl + '_' + fs + '.png'; a.href = url;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 500); resolve();
     }, 'image/png');
   });
 }
 
 async function descargarTodos() {
   const partido = getPartidoActual();
-  const conInforme = estado.jugadores.filter(j => tieneContenido(partido.informes[j.id]));
-  if (conInforme.length === 0) {
-    mostrarToast('No hay informes cargados');
-    return;
-  }
-  mostrarToast('Descargando ' + conInforme.length + ' imágenes...');
-  for (let i = 0; i < conInforme.length; i++) {
-    await descargarImagen(conInforme[i].id, conInforme[i], partido);
+  const ci = estado.jugadores.filter(j => tieneContenido(partido.informes[j.id]));
+  if (ci.length === 0) { mostrarToast('No hay informes cargados'); return; }
+  mostrarToast('Descargando ' + ci.length + ' imágenes...');
+  for (let i = 0; i < ci.length; i++) {
+    await descargarImagen(ci[i].id, ci[i], partido);
     await new Promise(r => setTimeout(r, 350));
   }
   setTimeout(() => mostrarToast('Listo ✓'), 500);
@@ -1028,77 +783,51 @@ async function descargarTodos() {
 
 function renderTodosJugadores() {
   const cont = document.getElementById('listaTodosJugadores');
-  if (estado.jugadores.length === 0) {
-    cont.innerHTML = '<div class="empty-state"><div class="icono">👥</div><h3>No hay jugadores</h3><p>Agregá jugadores desde "Editar plantel"</p></div>';
-    return;
-  }
+  if (estado.jugadores.length === 0) { cont.innerHTML = '<div class="empty-state"><div class="icono">👥</div><h3>No hay jugadores</h3><p>Agregá jugadores desde "Editar plantel"</p></div>'; return; }
   cont.innerHTML = estado.jugadores.map(j => {
-    const count = estado.partidos.filter(p => tieneContenido(p.informes[j.id])).length;
-    const iniciales = j.nombre.split(' ').slice(0,2).map(s=>s[0]).join('').toUpperCase();
-    return '<div class="jugador-row" onclick="verHistorialJugador(\'' + j.id + '\')"><div class="avatar">' + escapeHtml(iniciales) + '</div><div class="nombre">' + escapeHtml(j.nombre) + '<div style="font-size:12px; color:var(--gris); font-weight:400; margin-top:2px;">' + count + ' informe' + (count===1?'':'s') + '</div></div><div class="acciones"><span style="color:var(--gris); font-size:20px;">›</span></div></div>';
+    const c = estado.partidos.filter(p => tieneContenido(p.informes[j.id])).length;
+    const ini = j.nombre.split(' ').slice(0,2).map(s=>s[0]).join('').toUpperCase();
+    return '<div class="jugador-row" onclick="verHistorialJugador(\'' + j.id + '\')"><div class="avatar">' + escapeHtml(ini) + '</div><div class="nombre">' + escapeHtml(j.nombre) + '<div style="font-size:12px; color:var(--gris); font-weight:400; margin-top:2px;">' + c + ' informe' + (c===1?'':'s') + '</div></div><div class="acciones"><span style="color:var(--gris); font-size:20px;">›</span></div></div>';
   }).join('');
 }
 
-function verHistorialJugador(jugadorId) {
-  estado.jugadorActual = jugadorId;
-  renderHistorialJugador();
-  irA('pHistorialJugador');
-}
+function verHistorialJugador(jid) { estado.jugadorActual = jid; renderHistorialJugador(); irA('pHistorialJugador'); }
 
 function renderHistorialJugador() {
   const jugador = estado.jugadores.find(j => j.id === estado.jugadorActual);
   if (!jugador) return;
   document.getElementById('historialNombre').textContent = jugador.nombre;
   const cont = document.getElementById('listaHistorial');
-  const partidosConInforme = estado.partidos
-    .filter(p => tieneContenido(p.informes[jugador.id]))
-    .sort((a,b) => b.fecha.localeCompare(a.fecha));
-  if (partidosConInforme.length === 0) {
-    cont.innerHTML = '<div class="empty-state"><div class="icono">📋</div><h3>Sin informes todavía</h3><p>Cargá informes para empezar a ver su evolución</p></div>';
-    return;
-  }
-  cont.innerHTML = partidosConInforme.map(p => {
+  const pi = estado.partidos.filter(p => tieneContenido(p.informes[jugador.id])).sort((a,b) => b.fecha.localeCompare(a.fecha));
+  if (pi.length === 0) { cont.innerHTML = '<div class="empty-state"><div class="icono">📋</div><h3>Sin informes todavía</h3><p>Cargá informes para empezar a ver su evolución</p></div>'; return; }
+  cont.innerHTML = pi.map(p => {
     const informe = p.informes[jugador.id];
-    const fechaStr = new Date(p.fecha + 'T12:00:00').toLocaleDateString('es-AR');
-    let preview = '';
-    for (const s of SECCIONES) {
-      if (informe[s.key]) { preview = informe[s.key]; break; }
-    }
-    return '<div class="historial-card" onclick="abrirInformeHistorial(\'' + p.id + '\', \'' + jugador.id + '\')"><div class="top"><div class="fecha">' + fechaStr + '</div><div class="rival">vs. ' + escapeHtml(p.rival) + '</div></div><div class="preview-texto">' + escapeHtml(preview) + '</div></div>';
+    const fs = new Date(p.fecha + 'T12:00:00').toLocaleDateString('es-AR');
+    let pv = '';
+    for (const s of SECCIONES) { if (informe[s.key]) { pv = informe[s.key]; break; } }
+    return '<div class="historial-card" onclick="abrirInformeHistorial(\'' + p.id + '\', \'' + jugador.id + '\')"><div class="top"><div class="fecha">' + fs + '</div><div class="rival">vs. ' + escapeHtml(p.rival) + '</div></div><div class="preview-texto">' + escapeHtml(pv) + '</div></div>';
   }).join('');
 }
 
-function abrirInformeHistorial(partidoId, jugadorId) {
-  estado.partidoActual = partidoId;
-  estado.jugadorActual = jugadorId;
-  estado.pantallaAnterior = 'pHistorialJugador';
+function abrirInformeHistorial(pid, jid) {
+  estado.partidoActual = pid; estado.jugadorActual = jid; estado.pantallaAnterior = 'pHistorialJugador';
   const partido = getPartidoActual();
-  const jugador = estado.jugadores.find(j => j.id === jugadorId);
-  const informe = partido.informes[jugadorId] || {};
+  const jugador = estado.jugadores.find(j => j.id === jid);
+  const informe = partido.informes[jid] || {};
   document.getElementById('informeNombreJugador').textContent = jugador.nombre;
-  const fecha = new Date(partido.fecha + 'T12:00:00').toLocaleDateString('es-AR');
-  document.getElementById('informePartidoInfo').textContent = fecha + ' · vs. ' + partido.rival;
-  const cont = document.getElementById('seccionesContainer');
-  cont.innerHTML = SECCIONES.map(s => '<div class="seccion-card"><label>' + s.titulo + '</label><textarea id="sec_' + s.key + '" placeholder="' + s.hint + '...">' + escapeHtml(informe[s.key] || '') + '</textarea></div>').join('');
+  document.getElementById('informePartidoInfo').textContent = new Date(partido.fecha + 'T12:00:00').toLocaleDateString('es-AR') + ' · vs. ' + partido.rival;
+  document.getElementById('seccionesContainer').innerHTML = SECCIONES.map(s => '<div class="seccion-card"><label>' + s.titulo + '</label><textarea id="sec_' + s.key + '" placeholder="' + s.hint + '...">' + escapeHtml(informe[s.key] || '') + '</textarea></div>').join('');
   irA('pInforme');
 }
 
-function volverDeHistorial() {
-  renderTodosJugadores();
-  irA('pTodosJugadores');
-}
+function volverDeHistorial() { renderTodosJugadores(); irA('pTodosJugadores'); }
 
 function exportarRespaldo() {
-  const data = JSON.stringify(estado, null, 2);
-  const blob = new Blob([data], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify(estado, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  const hoy = new Date().toISOString().split('T')[0];
-  a.download = 'respaldo_informes_' + hoy + '.json';
-  a.href = url;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  a.download = 'respaldo_informes_' + new Date().toISOString().split('T')[0] + '.json';
+  a.href = url; document.body.appendChild(a); a.click(); document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 500);
   mostrarToast('Respaldo descargado ✓');
 }
@@ -1106,47 +835,36 @@ function exportarRespaldo() {
 function importarRespaldo(e) {
   const file = e.target.files[0];
   if (!file) return;
-  if (!confirm('Esto va a reemplazar todos los datos actuales. ¿Continuar?')) {
-    e.target.value = '';
-    return;
-  }
+  if (!confirm('Esto va a reemplazar todos los datos actuales en la nube. ¿Continuar?')) { e.target.value = ''; return; }
   const reader = new FileReader();
   reader.onload = ev => {
     try {
       const data = JSON.parse(ev.target.result);
-      estado = data;
-      guardar();
-      actualizarHeaderApp();
-      renderInicio();
-      irA('pInicio');
+      estado.config = data.config || estado.config;
+      estado.jugadores = data.jugadores || [];
+      estado.partidos = data.partidos || [];
+      guardar(); actualizarHeaderApp(); renderInicio(); irA('pInicio');
       mostrarToast('Respaldo restaurado ✓');
-    } catch (err) {
-      mostrarToast('Archivo inválido');
-    }
+    } catch (err) { mostrarToast('Archivo inválido'); }
   };
   reader.readAsText(file);
   e.target.value = '';
 }
 
-function confirmarBorrarTodo() {
-  if (!confirm('¿Borrar TODOS los datos?')) return;
+async function confirmarBorrarTodo() {
+  if (!confirm('¿Borrar TODOS los datos de la nube?')) return;
   if (!confirm('Última confirmación: ¿estás 100% seguro?')) return;
-  localStorage.removeItem(STORAGE_KEY);
+  estado = { config: { escudo: null, nombreClub: 'Club Atlético Tigre' }, jugadores: [], partidos: [], partidoActual: null, jugadorActual: null, pantallaAnterior: null };
+  await guardar();
   location.reload();
 }
 
-function escapeHtml(s) {
-  if (!s) return '';
-  return String(s)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
+function escapeHtml(s) { if (!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 
 let toastTimeout;
 function mostrarToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('activo');
+  t.textContent = msg; t.classList.add('activo');
   clearTimeout(toastTimeout);
   toastTimeout = setTimeout(() => t.classList.remove('activo'), 2200);
 }
@@ -1157,31 +875,65 @@ document.addEventListener('input', e => {
     const informe = {};
     SECCIONES.forEach(s => {
       const el = document.getElementById('sec_' + s.key);
-      if (el) {
-        const val = el.value.trim();
-        if (val) informe[s.key] = val;
-      }
+      if (el) { const val = el.value.trim(); if (val) informe[s.key] = val; }
     });
     partido.informes[estado.jugadorActual] = informe;
     guardar();
   }
 });
 
-window.addEventListener('DOMContentLoaded', () => {
-  cargar();
-  if (!estado.config.escudo) {
-    irA('pSetup');
-  } else {
-    actualizarHeaderApp();
-    irA('pInicio');
-    renderInicio();
-  }
-});
+window.loginConGoogle = loginConGoogle;
+window.cerrarSesion = cerrarSesion;
+window.cargarEscudoSetup = cargarEscudoSetup;
+window.guardarSetup = guardarSetup;
+window.abrirMenu = abrirMenu;
+window.cerrarMenu = cerrarMenu;
+window.cambiarEscudo = cambiarEscudo;
+window.aplicarCambioEscudo = aplicarCambioEscudo;
+window.nuevoPartido = nuevoPartido;
+window.crearPartido = crearPartido;
+window.cerrarModal = cerrarModal;
+window.abrirPartido = abrirPartido;
+window.confirmarBorrarPartido = confirmarBorrarPartido;
+window.editarInforme = editarInforme;
+window.guardarInforme = guardarInforme;
+window.volverDeInforme = volverDeInforme;
+window.renderPlantel = renderPlantel;
+window.agregarJugadorPrompt = agregarJugadorPrompt;
+window.actualizarNombreJugador = actualizarNombreJugador;
+window.eliminarJugador = eliminarJugador;
+window.volverDePlantel = volverDePlantel;
+window.verPreview = verPreview;
+window.volverDePreview = volverDePreview;
+window.compartirImagenActual = compartirImagenActual;
+window.descargarTodos = descargarTodos;
+window.renderTodosJugadores = renderTodosJugadores;
+window.verHistorialJugador = verHistorialJugador;
+window.abrirInformeHistorial = abrirInformeHistorial;
+window.volverDeHistorial = volverDeHistorial;
+window.exportarRespaldo = exportarRespaldo;
+window.importarRespaldo = importarRespaldo;
+window.confirmarBorrarTodo = confirmarBorrarTodo;
+window.irA = irA;
+
+function iniciarApp() {
+  if (!window.fb) { setTimeout(iniciarApp, 100); return; }
+  irA('pCargando');
+  window.fb.onAuthStateChanged(window.fb.auth, async (user) => {
+    if (user) {
+      usuarioActual = user;
+      await cargarDatosUsuario();
+      if (!estado.config.escudo) irA('pSetup');
+      else { actualizarHeaderApp(); irA('pInicio'); renderInicio(); }
+    } else {
+      usuarioActual = null;
+      irA('pLogin');
+    }
+  });
+}
+
+window.addEventListener('DOMContentLoaded', iniciarApp);
 </script>
 
 </body>
 </html>
-
-
-
-
