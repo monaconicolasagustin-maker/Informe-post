@@ -136,6 +136,12 @@
   .historial-card .fecha { font-weight: 600; font-size: 14px; }
   .historial-card .rival { font-size: 13px; color: var(--gris); }
   .historial-card .preview-texto { font-size: 13px; color: var(--gris); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .checklist-jugadores { max-height: 320px; overflow-y: auto; border: 1.5px solid var(--gris-claro); border-radius: 10px; }
+  .checklist-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid var(--gris-claro); cursor: pointer; }
+  .checklist-item:last-child { border-bottom: none; }
+  .checklist-item input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--rojo); flex-shrink: 0; }
+  .checklist-item .nom { font-size: 15px; }
+  .checklist-vacio { padding: 20px; text-align: center; color: var(--gris); font-size: 14px; }
   .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--negro); color: white; padding: 12px 20px; border-radius: 99px; font-size: 14px; box-shadow: var(--shadow-lg); opacity: 0; transition: all 0.3s; z-index: 2000; pointer-events: none; }
   .toast.activo { opacity: 1; transform: translateX(-50%) translateY(0); }
   .login-screen { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 22px; text-align: center; }
@@ -222,7 +228,7 @@
     </div>
     <div class="progreso-bar"><div class="fill" id="progresoFill" style="width:0%"></div></div>
     <div style="text-align:center; font-size:13px; color:var(--gris); margin-bottom:18px;" id="progresoTexto">0 de 0 informes</div>
-    <div class="section-title">Jugadores<span class="link" onclick="irA('pPlantel')">Editar plantel</span></div>
+    <div class="section-title">Jugadores<span class="link" onclick="abrirEditarJugadores()">Editar jugadores</span></div>
     <div class="lista-jugadores" id="listaJugadoresPartido"></div>
     <div class="acciones-footer">
       <button class="btn btn-azul btn-full" onclick="descargarTodos()">📥 Descargar informes completados</button>
@@ -280,9 +286,27 @@
     <h3>Nuevo partido</h3>
     <div class="field"><label>Fecha</label><input type="date" id="nuevoPartidoFecha"></div>
     <div class="field"><label>Rival</label><input type="text" id="nuevoPartidoRival" placeholder="Ej: CA Platense"></div>
+    <div class="field">
+      <label>Jugadores que participaron</label>
+      <div style="font-size:12px; color:var(--gris); margin-bottom:8px; font-weight:400; text-transform:none; letter-spacing:0;">Marcá quiénes jugaron. Se pre-marcan los del último partido.</div>
+      <div id="checklistNuevoPartido" class="checklist-jugadores"></div>
+    </div>
     <div class="modal-actions">
       <button class="btn btn-secundario" onclick="cerrarModal('modalNuevoPartido')">Cancelar</button>
       <button class="btn btn-rojo" onclick="crearPartido()">Crear</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalEditarJugadores">
+  <div class="modal-content" style="position:relative;">
+    <button class="modal-close" onclick="cerrarModal('modalEditarJugadores')">×</button>
+    <h3>Editar jugadores del partido</h3>
+    <div style="font-size:13px; color:var(--gris); margin-bottom:12px;">Marcá o desmarcá quiénes participaron. Si quitás un jugador con informe cargado, se te va a pedir confirmación.</div>
+    <div id="checklistEditarJugadores" class="checklist-jugadores"></div>
+    <div class="modal-actions">
+      <button class="btn btn-secundario" onclick="cerrarModal('modalEditarJugadores')">Cancelar</button>
+      <button class="btn btn-rojo" onclick="guardarJugadoresPartido()">Guardar</button>
     </div>
   </div>
 </div>
@@ -503,7 +527,35 @@ function tieneContenido(informe) { if (!informe) return false; return SECCIONES.
 function nuevoPartido() {
   document.getElementById('nuevoPartidoFecha').value = new Date().toISOString().split('T')[0];
   document.getElementById('nuevoPartidoRival').value = '';
+  // Pre-marcar los jugadores del último partido por fecha
+  let preMarcados = [];
+  if (estado.partidos.length > 0) {
+    const ultimo = [...estado.partidos].sort((a,b) => b.fecha.localeCompare(a.fecha))[0];
+    if (ultimo && Array.isArray(ultimo.participantes)) {
+      preMarcados = ultimo.participantes.slice();
+    } else if (ultimo) {
+      // Partido viejo sin lista de participantes: pre-marcar a todos los que tengan informe
+      preMarcados = Object.keys(ultimo.informes || {}).filter(k => tieneContenido(ultimo.informes[k]));
+    }
+  }
+  renderChecklist('checklistNuevoPartido', preMarcados);
   document.getElementById('modalNuevoPartido').classList.add('activo');
+}
+
+function renderChecklist(contenedorId, marcados) {
+  const cont = document.getElementById(contenedorId);
+  if (estado.jugadores.length === 0) {
+    cont.innerHTML = '<div class="checklist-vacio">No hay jugadores en el plantel. Agregalos desde "Editar plantel".</div>';
+    return;
+  }
+  cont.innerHTML = estado.jugadores.map(j => {
+    const checked = marcados.includes(j.id) ? 'checked' : '';
+    return '<label class="checklist-item"><input type="checkbox" value="' + j.id + '" ' + checked + '><span class="nom">' + escapeHtml(j.nombre) + '</span></label>';
+  }).join('');
+}
+
+function getCheckedIds(contenedorId) {
+  return Array.from(document.querySelectorAll('#' + contenedorId + ' input[type=checkbox]:checked')).map(c => c.value);
 }
 
 function crearPartido() {
@@ -511,8 +563,10 @@ function crearPartido() {
   const rival = document.getElementById('nuevoPartidoRival').value.trim();
   if (!fecha) { mostrarToast('Falta la fecha'); return; }
   if (!rival) { mostrarToast('Falta el rival'); return; }
+  const participantes = getCheckedIds('checklistNuevoPartido');
+  if (participantes.length === 0) { mostrarToast('Marcá al menos un jugador'); return; }
   const id = 'p_' + Date.now();
-  estado.partidos.push({ id, fecha, rival, informes: {} });
+  estado.partidos.push({ id, fecha, rival, informes: {}, participantes });
   estado.partidoActual = id;
   guardar();
   cerrarModal('modalNuevoPartido');
@@ -524,23 +578,66 @@ function cerrarModal(id) { document.getElementById(id).classList.remove('activo'
 function abrirPartido(id) { estado.partidoActual = id; renderPartido(); irA('pPartido'); }
 function getPartidoActual() { return estado.partidos.find(p => p.id === estado.partidoActual); }
 
+// Devuelve los jugadores de un partido. Si tiene lista de participantes, usa esa.
+// Si no (partidos viejos), devuelve TODO el plantel, igual que antes.
+function jugadoresDelPartido(p) {
+  if (p && Array.isArray(p.participantes)) {
+    return estado.jugadores.filter(j => p.participantes.includes(j.id));
+  }
+  return estado.jugadores;
+}
+
 function renderPartido() {
   const p = getPartidoActual();
   if (!p) return;
   const fechaStr = new Date(p.fecha + 'T12:00:00').toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric' });
   document.getElementById('partidoFecha').textContent = fechaStr;
   document.getElementById('partidoRival').textContent = 'vs. ' + p.rival;
-  const total = estado.jugadores.length;
-  const completos = estado.jugadores.filter(j => tieneContenido(p.informes[j.id])).length;
+  const jugadores = jugadoresDelPartido(p);
+  const total = jugadores.length;
+  const completos = jugadores.filter(j => tieneContenido(p.informes[j.id])).length;
   document.getElementById('progresoFill').style.width = (total > 0 ? Math.round((completos/total)*100) : 0) + '%';
   document.getElementById('progresoTexto').textContent = completos + ' de ' + total + ' informes';
   const cont = document.getElementById('listaJugadoresPartido');
-  if (estado.jugadores.length === 0) { cont.innerHTML = '<div class="empty-state"><div class="icono">👥</div><h3>Todavía no hay jugadores</h3><p>Tocá "Editar plantel" para agregar</p></div>'; return; }
-  cont.innerHTML = estado.jugadores.map(j => {
+  if (jugadores.length === 0) { cont.innerHTML = '<div class="empty-state"><div class="icono">👥</div><h3>No hay jugadores en este partido</h3><p>Tocá "Editar jugadores" para sumar</p></div>'; return; }
+  cont.innerHTML = jugadores.map(j => {
     const completo = tieneContenido(p.informes[j.id]);
     const ini = j.nombre.split(' ').slice(0,2).map(s=>s[0]).join('').toUpperCase();
     return '<div class="jugador-row ' + (completo?'completo':'') + '"><div class="avatar">' + (completo?'✓':escapeHtml(ini)) + '</div><div class="nombre" onclick="editarInforme(\'' + j.id + '\')">' + escapeHtml(j.nombre) + '</div><div class="acciones">' + (completo ? '<button class="icon-btn azul" onclick="verPreview(\'' + j.id + '\')">👁</button>' : '') + '<button class="icon-btn" onclick="editarInforme(\'' + j.id + '\')">✏️</button></div></div>';
   }).join('');
+}
+
+function abrirEditarJugadores() {
+  const p = getPartidoActual();
+  if (!p) return;
+  // Marcados = participantes actuales. Si es partido viejo sin lista, marcar a todos.
+  let marcados;
+  if (Array.isArray(p.participantes)) marcados = p.participantes.slice();
+  else marcados = estado.jugadores.map(j => j.id);
+  renderChecklist('checklistEditarJugadores', marcados);
+  document.getElementById('modalEditarJugadores').classList.add('activo');
+}
+
+function guardarJugadoresPartido() {
+  const p = getPartidoActual();
+  if (!p) return;
+  const nuevos = getCheckedIds('checklistEditarJugadores');
+  if (nuevos.length === 0) { mostrarToast('Marcá al menos un jugador'); return; }
+  // Detectar si se va a quitar a alguien con informe cargado
+  const actuales = Array.isArray(p.participantes) ? p.participantes : estado.jugadores.map(j => j.id);
+  const quitados = actuales.filter(id => !nuevos.includes(id));
+  const quitadosConInforme = quitados.filter(id => tieneContenido(p.informes[id]));
+  if (quitadosConInforme.length > 0) {
+    const nombres = quitadosConInforme.map(id => { const j = estado.jugadores.find(x => x.id === id); return j ? j.nombre : ''; }).filter(Boolean).join(', ');
+    if (!confirm('Vas a quitar del partido a jugadores que ya tienen informe cargado (' + nombres + '). Sus informes de este partido se borrarán. ¿Continuar?')) return;
+    // Borrar los informes de los quitados
+    quitadosConInforme.forEach(id => { delete p.informes[id]; });
+  }
+  p.participantes = nuevos;
+  guardar();
+  cerrarModal('modalEditarJugadores');
+  renderPartido();
+  mostrarToast('Jugadores actualizados');
 }
 
 function confirmarBorrarPartido() {
@@ -771,7 +868,7 @@ async function descargarImagen(jid, jugador, partido) {
 
 async function descargarTodos() {
   const partido = getPartidoActual();
-  const ci = estado.jugadores.filter(j => tieneContenido(partido.informes[j.id]));
+  const ci = jugadoresDelPartido(partido).filter(j => tieneContenido(partido.informes[j.id]));
   if (ci.length === 0) { mostrarToast('No hay informes cargados'); return; }
   mostrarToast('Descargando ' + ci.length + ' imágenes...');
   for (let i = 0; i < ci.length; i++) {
@@ -892,6 +989,8 @@ window.cambiarEscudo = cambiarEscudo;
 window.aplicarCambioEscudo = aplicarCambioEscudo;
 window.nuevoPartido = nuevoPartido;
 window.crearPartido = crearPartido;
+window.abrirEditarJugadores = abrirEditarJugadores;
+window.guardarJugadoresPartido = guardarJugadoresPartido;
 window.cerrarModal = cerrarModal;
 window.abrirPartido = abrirPartido;
 window.confirmarBorrarPartido = confirmarBorrarPartido;
